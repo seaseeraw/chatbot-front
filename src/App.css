@@ -9,6 +9,13 @@
   flex-direction: column;
   overflow: hidden;
   font-family: Arial, sans-serif;
+  position: relative;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Dark Mode */
+.chat-container.dark {
+  background: #1e1e1e;
 }
 
 .chat-header {
@@ -18,6 +25,11 @@
   text-align: center;
   font-size: 18px;
   font-weight: bold;
+  position: relative;
+}
+
+.dark .chat-header {
+  background: #333;
 }
 
 .chat-box {
@@ -26,6 +38,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
 }
 
 .chat-message {
@@ -35,6 +48,12 @@
   margin: 5px 0;
   font-size: 14px;
   word-wrap: break-word;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .user {
@@ -49,11 +68,20 @@
   color: black;
 }
 
+.dark .bot {
+  background: #444;
+  color: white;
+}
+
 .chat-input-container {
   display: flex;
   padding: 10px;
   background: white;
   border-top: 1px solid #ddd;
+}
+
+.dark .chat-input-container {
+  background: #2c2c2c;
 }
 
 .chat-input {
@@ -63,6 +91,11 @@
   border-radius: 20px;
   outline: none;
   background: #f3f3f3;
+}
+
+.dark .chat-input {
+  background: #444;
+  color: white;
 }
 
 .chat-send-btn {
@@ -78,4 +111,43 @@
 
 .chat-send-btn:hover {
   background: #357ABD;
+}
+
+/* Typing animation */
+.typing-indicator {
+  width: 40px;
+  height: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.typing-indicator:before {
+  content: "...";
+  font-size: 20px;
+  color: gray;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dark .dark-mode-btn {
+  background: #444;
+  color: white;
 }
